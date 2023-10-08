@@ -10,4 +10,4 @@ Components:
 ```bash
 docker compose up
 ```
-
+Open localhost:3000
