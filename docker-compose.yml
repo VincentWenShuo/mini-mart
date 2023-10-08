@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+
+  client-web:
+    container_name: "client-web"
+    build: ./client-web/.
+    ports:
+      - '3000:80'
+    networks:
+      - mynetwork
+    depends_on:
+      - api-server
+      - db
+      - redis
+
+  api-server:
+    container_name: "api-server"
+    build: ./api-server/.
+    environment:
+      - PORT=5001
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_CHANNEL=${REDIS_CHANNEL}
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USERNAME=${MYSQL_USERNAME}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_TABLE=${MYSQL_TABLE}
+    ports:
+      - '5001:5001'
+    networks:
+      - mynetwork
+    depends_on:
+      - db
+      - redis
+
+  db:
+    container_name: "mysql-db"
+    build: ./db/.
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    networks:
+      - mynetwork
+
+  redis:
+    container_name: "redis-service"
+    image: "redis:latest"
+    restart: always
+    command: redis-server --save 20 1 --loglevel warning --requirepass mypassword
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
