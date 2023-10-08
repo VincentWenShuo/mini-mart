@@ -1,3 +1,5 @@
+NodeJS express, MySQL, redis and ReactJS web app
+
 Components:
 
 1. api-server
