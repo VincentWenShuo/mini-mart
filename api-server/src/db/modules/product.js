@@ -21,11 +21,6 @@ export default (sequelize, DataTypes) => {
             image: {
                 type: DataTypes.STRING,
                 validate: {
-                    // notEmpty: { msg: "Please enter the password" },
-                    // len: {
-                    //     args: [6, 20],
-                    //     msg: "password must contain at least 6 characters  and a maximum of 50",
-                    // },
                 },
             },
             price: {
