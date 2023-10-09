@@ -8,6 +8,6 @@ routes.get("/product/name/:name", productController.getByName);
 routes.get("/product/:id", productController.getById);
 routes.post("/product", productController.add);
 routes.patch("/product/:id", productController.updateById);
-routes.delete("/product/:productId", productController.destroyById);
+routes.delete("/product/:id", productController.destroyById);
 
 export default routes;

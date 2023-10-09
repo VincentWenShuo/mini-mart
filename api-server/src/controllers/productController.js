@@ -76,9 +76,9 @@ export const updateById = async (req, res) => {
 };
 
 export const destroyById = async (req, res) => {
-    const { productId } = req.params;
+    const { id } = req.params;
 
-    const product = await Product.findOne({ where: { id: productId } });
+    const product = await Product.findOne({ where: { id: id } });
     if (!product) throw new NotFound("Product not found.");
     await Product.destroy({ where: { id: product.id } });
     updateProductsAllCache();
