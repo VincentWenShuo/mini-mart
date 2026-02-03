@@ -7,6 +7,7 @@ Components:
 3. Redis Cache
 4. MySQL Database
 
+
 ```bash
 docker compose up
 ```
